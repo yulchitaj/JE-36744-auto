@@ -1,0 +1,52 @@
+{
+  "version": "1.5",
+  "type": "update",
+  "name": "TEST: JE-36744 [CS] - empty placeholder values are not replaced",
+
+  "onInstall": [
+    {
+      "set": {
+        "empty": "",
+        "false": false,
+        "null": null,
+        "custom": "test"
+      }
+    },
+    {
+      "assert": [
+        "'${this.empty}' === ''",
+        "'${this.false}' === 'false'",
+        "'${this.null}' === 'null'",
+        "'${this.custom}' === 'test'",
+        "'${unknown:[this.empty]}' === ''",
+        "'${unknown:[this.false]}' === 'false'",
+        "'${unknown:[this.null]}' === 'null'",
+        "'${unknown:[this.custom]}' === 'test'",
+        "'${unknown:}' === ''"
+      ]
+    },
+    {
+      "check": {
+        "empty": "",
+        "false": false,
+        "null": null,
+        "custom": "test"
+      }
+    }
+  ],
+
+  "actions": {
+    "check": {
+      "assert": [
+        "'${this.empty}' === ''",
+        "'${this.false}' === 'false'",
+        "'${this.null}' === 'null'",
+        "'${this.custom}' === 'test'",
+        "'${unknown:[this.empty]}' === ''",
+        "'${unknown:[this.false]}' === 'false'",
+        "'${unknown:[this.null]}' === 'null'",
+        "'${unknown:[this.custom]}' === 'test'"
+      ]
+    }
+  }
+}
